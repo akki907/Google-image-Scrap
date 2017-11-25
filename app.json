@@ -1,6 +1,6 @@
 {
-  "name":"An Image Crawler App",
+  "name":"google image scrape",
   "description": "A Mean Stack app for Image Crawling",
-  "repository" :"https://github.com/akki907/Mean-imagegit ",
-  "keywords":["mean","Image Crawler","angular"]
+  "repository" :"https://github.com/akki907/Google-image-Scrap.git ",
+  "keywords":["mean","Image Crawler","angular","googlr"]
 }

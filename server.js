@@ -24,9 +24,9 @@ app.use(bodyParser.urlencoded({ extended : true }));
 app.use(morgan('dev'));
 app.use('/',router);
 
-
-
-var MONGOLAB_URI = 'mongodb://localhost/GoogleSearchData';
+// mongodb://<dbuser>:<dbpassword>@ds119306.mlab.com:19306/googlesearchdata
+var MONGOLAB_URI = 'mongodb://akki:1111111@ds119306.mlab.com:19306/googlesearchdata'
+// var MONGOLAB_URI = 'mongodb://localhost/GoogleSearchData';
 //connect Database
 mongoose.connect(MONGOLAB_URI, (err,response) =>{
     if(err){
