@@ -1,0 +1,13 @@
+<!-- <h1>hello</h1> -->
+<!-- getList -->
+<div ng-controller="myCtrl">
+<div class="container" ng-init="getList()" >
+    <div class="col-md-3" ng-repeat="link in linkData">
+        <!-- <button class="well"   ng-click="getImageById(link._id)">{{link.searchKeyword}}</button> -->
+        <a class="btn btn-warning list_class"  ui-sref="getImage({id: link._id})" ><span class="label label-default">{{link.searchKeyword}}</span></a>
+        
+    </div>
+    
+</div>
+</div>
+

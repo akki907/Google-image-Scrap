@@ -9,17 +9,17 @@ app.config(function($stateProvider, $urlRouterProvider) {
           // HOME STATES AND NESTED VIEWS ========================================
           .state('home', {
               url: '/home',
-              templateUrl: 'home.html'
+              templateUrl: 'views/home.html'
               // controller:myCtrl
           })
   
           .state('list', {
-              url: '/list',
-              templateUrl: 'listById.html'
+              url: '/list',                                                                                                                                                                                                                                                                                                             
+              templateUrl: 'views/listById.html'                                                                                                                                                                                                                                                                                       
           })
           .state('getImage', {
             url: '/getImage/:id',
-            templateUrl: 'getImageLocal.html'
+            templateUrl: 'views/getImageLocal.html'
         })
           ;
 
