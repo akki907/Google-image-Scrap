@@ -25,8 +25,8 @@ app.use(morgan('dev'));
 app.use('/',router);
 
 // mongodb://<dbuser>:<dbpassword>@ds119306.mlab.com:19306/googlesearchdata
-var MONGOLAB_URI = 'mongodb://akki:1111111@ds119306.mlab.com:19306/googlesearchdata'
-// var MONGOLAB_URI = 'mongodb://localhost/GoogleSearchData';
+// var MONGOLAB_URI = 'mongodb://akki:1111111@ds119306.mlab.com:19306/googlesearchdata'
+var MONGOLAB_URI = 'mongodb://localhost/GoogleSearchData';
 //connect Database
 mongoose.connect(MONGOLAB_URI, (err,response) =>{
     if(err){
@@ -46,8 +46,8 @@ app.get('/api/getSearchById/:id',getSearchById);
 function imageScrapeAndProcessing (req,res){
     var searchKeyWord = req.body.searchKeyWord
 
-   
-    var folderPath = './data/ImageData_'+searchKeyWord ;
+    var folderPath = './public/data/ImageData_'+searchKeyWord ;    
+    // var folderPath = './data/ImageData_'+searchKeyWord ;
      mkdirp(folderPath, function(err) { 
             // path exists unless there was an error
             var search = new SearchDetail()
@@ -76,7 +76,6 @@ function imageScrapeAndProcessing (req,res){
                                         .greyscale()                 // set greyscale 
                                         .write(imagePath); // save 
                                 }).catch(function (err) {
-                                    console.error(err);
                                     console.log('done')
                                 });
                             })
@@ -104,8 +103,7 @@ function getAllSearch(req,res){
           console.log(err);
           res.json(err);
         }else{
-          console.log(search);
-          res.json(search);
+          res.json(search); 
         }
       })
 
@@ -119,7 +117,15 @@ function getSearchById (req,res)
         if(err){
           res.json(err);
         }else{
-          res.json(search)      
+            var pathArray = []
+        fs.readdir(search.path, function(err, filenames) {
+            var actualPath = search.path.split('public/')
+            filenames.forEach(function(item){
+              var fullPath =  actualPath[1] + '/' + item;
+                pathArray.push(fullPath);
+            })
+            res.json(pathArray) 
+        })  
         }
       })
 }

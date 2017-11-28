@@ -18,7 +18,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
               templateUrl: 'listById.html'
           })
           .state('getImage', {
-            url: '/getImage',
+            url: '/getImage/:id',
             templateUrl: 'getImageLocal.html'
         })
           ;
@@ -27,7 +27,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
   
   });
 
-app.controller('myCtrl', function($scope,$http,$rootScope) {
+app.controller('myCtrl', function($scope,$http,$rootScope,$state) {
 
   $scope.loader  = false;
 
@@ -52,13 +52,9 @@ app.controller('myCtrl', function($scope,$http,$rootScope) {
       });
   }
 
-  $scope.getImageById = function(id){ 
-    var postData = {
-      id :id
-    }
-    $http.get('/api/getSearchById/'+id)
+  $scope.getImageById = function(){ 
+    $http.get('/api/getSearchById/'+$state.params.id)
     .then(function(response){
-      console.log(response)
       $scope.picImage = response.data;      
       });
   }
